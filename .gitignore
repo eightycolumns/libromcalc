@@ -1,0 +1,3 @@
+*.o
+libromcalc.a
+romcalc-test
