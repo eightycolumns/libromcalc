@@ -1,6 +1,7 @@
 #include "src/romcalc.h"
 
 #include <assert.h>
+#include <ctype.h>
 #include <regex.h>
 #include <stdbool.h>
 #include <string.h>
@@ -36,6 +37,23 @@ static bool is_roman_numeral(const char *string) {
   assert(string != NULL);
 
   if (is_empty_string(string)) {
+    return false;
+  }
+
+  bool string_includes_lowercase = false;
+  bool string_includes_uppercase = false;
+
+  for (size_t i = 0; i < strlen(string); i += 1) {
+    if (islower(string[i])) {
+      string_includes_lowercase = true;
+    }
+
+    if (isupper(string[i])) {
+      string_includes_uppercase = true;
+    }
+  }
+
+  if (string_includes_lowercase && string_includes_uppercase) {
     return false;
   }
 
