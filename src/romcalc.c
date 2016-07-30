@@ -12,6 +12,7 @@ typedef struct {
 } Numeral;
 
 static Numeral numerals[] = {
+  {"CM", 900},
   {"D", 500},
   {"CD", 400},
   {"C", 100},

@@ -86,6 +86,12 @@ START_TEST(CD_plus_C_is_D) {
   ck_assert_str_eq(expected, actual);
 } END_TEST
 
+START_TEST(D_plus_CD_is_CM) {
+  char expected[] = "CM";
+  add(actual, "D", "CD");
+  ck_assert_str_eq(expected, actual);
+} END_TEST
+
 TCase *addition(void) {
   TCase *addition = tcase_create("Addition");
 
@@ -104,6 +110,7 @@ TCase *addition(void) {
   tcase_add_test(addition, C_plus_C_is_CC);
   tcase_add_test(addition, CC_plus_CC_is_CD);
   tcase_add_test(addition, CD_plus_C_is_D);
+  tcase_add_test(addition, D_plus_CD_is_CM);
 
   return addition;
 }
