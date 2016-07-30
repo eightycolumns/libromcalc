@@ -77,7 +77,9 @@ static bool is_mixed_case(const char *string) {
 static bool includes_lowercase(const char *string) {
   assert(string != NULL);
 
-  for (size_t i = 0; i < strlen(string); i += 1) {
+  size_t string_length = strlen(string);
+
+  for (size_t i = 0; i < string_length; i += 1) {
     if (islower(string[i])) {
       return true;
     }
@@ -89,7 +91,9 @@ static bool includes_lowercase(const char *string) {
 static bool includes_uppercase(const char *string) {
   assert(string != NULL);
 
-  for (size_t i = 0; i < strlen(string); i += 1) {
+  size_t string_length = strlen(string);
+
+  for (size_t i = 0; i < string_length; i += 1) {
     if (isupper(string[i])) {
       return true;
     }
