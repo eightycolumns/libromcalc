@@ -10,6 +10,7 @@ static char sum[ROMCALC_MAX_LENGTH];
 static char augend[ROMCALC_MAX_LENGTH];
 static char addend[ROMCALC_MAX_LENGTH];
 
+static char difference[ROMCALC_MAX_LENGTH];
 static char minuend[ROMCALC_MAX_LENGTH];
 static char subtrahend[ROMCALC_MAX_LENGTH];
 
@@ -37,6 +38,12 @@ START_TEST(difference_cannot_be_NULL) {
   ck_assert_int_eq(expected, actual);
 } END_TEST
 
+START_TEST(minuend_cannot_be_NULL) {
+  int expected = ROMCALC_NULL_POINTER_ERROR;
+  int actual = subtract(difference, NULL, subtrahend);
+  ck_assert_int_eq(expected, actual);
+} END_TEST
+
 TCase *null_pointer_error(void) {
   TCase *null_pointer_error = tcase_create("Null Pointer Error");
 
@@ -45,6 +52,7 @@ TCase *null_pointer_error(void) {
   tcase_add_test(null_pointer_error, addend_cannot_be_NULL);
 
   tcase_add_test(null_pointer_error, difference_cannot_be_NULL);
+  tcase_add_test(null_pointer_error, minuend_cannot_be_NULL);
 
   return null_pointer_error;
 }

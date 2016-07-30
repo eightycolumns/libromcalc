@@ -12,10 +12,9 @@ int add(char *sum, const char *augend, const char *addend) {
 
 int subtract(char *difference, const char *minuend, const char *subtrahend) {
   // Temporarily suppress "unused parameter" warnings
-  (void)minuend;
   (void)subtrahend;
 
-  if (difference == NULL) {
+  if (difference == NULL || minuend == NULL) {
     return ROMCALC_NULL_POINTER_ERROR;
   }
 
