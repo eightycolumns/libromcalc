@@ -32,6 +32,12 @@ START_TEST(V_plus_IV_is_IX) {
   ck_assert_str_eq(expected, actual);
 } END_TEST
 
+START_TEST(IX_plus_I_is_X) {
+  char expected[] = "X";
+  add(actual, "IX", "I");
+  ck_assert_str_eq(expected, actual);
+} END_TEST
+
 TCase *addition(void) {
   TCase *addition = tcase_create("Addition");
 
@@ -39,6 +45,7 @@ TCase *addition(void) {
   tcase_add_test(addition, II_plus_II_is_IV);
   tcase_add_test(addition, IV_plus_I_is_V);
   tcase_add_test(addition, V_plus_IV_is_IX);
+  tcase_add_test(addition, IX_plus_I_is_X);
 
   return addition;
 }
