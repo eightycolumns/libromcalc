@@ -3,10 +3,7 @@
 #include <stddef.h>
 
 int add(char *sum, const char *augend, const char *addend) {
-  // Temporarily suppress "unused parameter" warnings
-  (void)addend;
-
-  if (sum == NULL || augend == NULL) {
+  if (sum == NULL || augend == NULL || addend == NULL) {
     return ROMCALC_NULL_POINTER_ERROR;
   }
 
