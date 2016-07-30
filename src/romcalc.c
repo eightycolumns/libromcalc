@@ -6,6 +6,7 @@
 #include <string.h>
 
 static bool is_roman_numeral(const char *string);
+static bool is_empty_string(const char *string);
 
 int add(char *sum, const char *augend, const char *addend) {
   if (sum == NULL || augend == NULL || addend == NULL) {
@@ -34,7 +35,7 @@ int subtract(char *difference, const char *minuend, const char *subtrahend) {
 static bool is_roman_numeral(const char *string) {
   assert(string != NULL);
 
-  if (strcmp("", string) == 0) {
+  if (is_empty_string(string)) {
     return false;
   }
 
@@ -53,4 +54,9 @@ static bool is_roman_numeral(const char *string) {
   regfree(&regex);
 
   return result;
+}
+
+static bool is_empty_string(const char *string) {
+  assert(string != NULL);
+  return strcmp("", string) == 0;
 }
