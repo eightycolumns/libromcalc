@@ -5,7 +5,8 @@
 
 enum {
   ROMCALC_SUCCESS,
-  ROMCALC_NULL_POINTER_ERROR
+  ROMCALC_NULL_POINTER_ERROR,
+  ROMCALC_INVALID_OPERAND_ERROR
 };
 
 int add(char *sum, const char *augend, const char *addend);
