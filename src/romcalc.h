@@ -9,5 +9,6 @@ enum {
 };
 
 int add(char *sum, const char *augend, const char *addend);
+int subtract(char *difference, const char *minuend, const char *subtrahend);
 
 #endif
