@@ -36,7 +36,7 @@ static bool is_roman_numeral(const char *string) {
 
   regex_t regex;
 
-  char pattern[] = "^C?(L?X{0,3}|X[LC])(V?I{0,3}|I[VX])$";
+  char pattern[] = "^C{0,3}(L?X{0,3}|X[LC])(V?I{0,3}|I[VX])$";
 
   int flags = REG_EXTENDED|REG_NOSUB;
 
