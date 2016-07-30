@@ -3,7 +3,7 @@
 #include <assert.h>
 #include <regex.h>
 #include <stdbool.h>
-#include <stddef.h>
+#include <string.h>
 
 static bool is_roman_numeral(const char *string);
 
@@ -33,6 +33,10 @@ int subtract(char *difference, const char *minuend, const char *subtrahend) {
 
 static bool is_roman_numeral(const char *string) {
   assert(string != NULL);
+
+  if (strcmp("", string) == 0) {
+    return false;
+  }
 
   regex_t regex;
 
