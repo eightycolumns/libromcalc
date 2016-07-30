@@ -98,6 +98,12 @@ START_TEST(CM_is_a_valid_operand) {
   ck_assert_int_eq(expected, actual);
 } END_TEST
 
+START_TEST(M_is_a_valid_operand) {
+  int expected = ROMCALC_SUCCESS;
+  int actual = add(sum, "M", "I");
+  ck_assert_int_eq(expected, actual);
+} END_TEST
+
 TCase *success(void) {
   TCase *success = tcase_create("Success");
 
@@ -118,6 +124,8 @@ TCase *success(void) {
   tcase_add_test(success, CD_is_a_valid_operand);
   tcase_add_test(success, D_is_a_valid_operand);
   tcase_add_test(success, CM_is_a_valid_operand);
+
+  tcase_add_test(success, M_is_a_valid_operand);
 
   return success;
 }
