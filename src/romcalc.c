@@ -36,7 +36,7 @@ static bool is_roman_numeral(const char *string) {
 
   regex_t regex;
 
-  char pattern[] = "^I{1,3}$";
+  char pattern[] = "^(I{1,3}|IV)$";
 
   int flags = REG_EXTENDED|REG_NOSUB;
 
