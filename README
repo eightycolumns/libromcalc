@@ -1,0 +1,57 @@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This is libromcalc. It provides functions to add and subtract Roman numerals.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To build libromcalc.a and its test executable:
+
+  make
+
+To run all tests:
+
+  make check
+
+To return everything to its pre-build state:
+
+  make clean
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Both add() and subtract()
+
+  - Accept uppercase and lowercase operands
+
+  - Reject mixed-case operands
+
+  - Write their results in uppercase regardless of their operands' cases
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Both add() and subtract() return 0 on success, or one of the following error
+codes indicating the cause of failure:
+
+ROMCALC_NULL_POINTER_ERROR
+
+  One or more arguments were null pointers.
+
+ROMCALC_INVALID_OPERAND_ERROR
+
+  One or more operands were invalid Roman numerals.
+
+ROMCALC_INVALID_RESULT_ERROR
+
+  Both operands were valid Roman numerals, but the result of the operation could
+  not be converted to a valid Roman numeral.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The macro ROMCALC_MAX_LENGTH represents the number of bytes needed to store the
+longest possible Roman numeral, including the terminating null byte.
+
+Recommended usage:
+
+  char sum[ROMCALC_MAX_LENGTH];
+  add(sum, "MDCLXVI", "MMCCXXII");
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
