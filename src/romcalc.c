@@ -1,6 +1,7 @@
 #include "src/romcalc.h"
 
 #include <assert.h>
+#include <ctype.h>
 #include <stdbool.h>
 #include <string.h>
 
@@ -13,36 +14,24 @@ typedef struct {
 
 static Numeral numerals[] = {
   {"M", 1000},
-  {"m", 1000},
   {"CM", 900},
-  {"cm", 900},
   {"D", 500},
-  {"d", 500},
   {"CD", 400},
-  {"cd", 400},
   {"C", 100},
-  {"c", 100},
   {"XC", 90},
-  {"xc", 90},
   {"L", 50},
-  {"l", 50},
   {"XL", 40},
-  {"xl", 40},
   {"X", 10},
-  {"x", 10},
   {"IX", 9},
-  {"ix", 9},
   {"V", 5},
-  {"v", 5},
   {"IV", 4},
-  {"iv", 4},
-  {"I", 1},
-  {"i", 1}
+  {"I", 1}
 };
 
 static size_t numeral_count = sizeof numerals / sizeof numerals[0];
 
 static int roman_to_arabic(const char *roman);
+static char *to_uppercase(char *string);
 static char *arabic_to_roman(char *roman, int arabic);
 
 int add(char *sum, const char *augend, const char *addend) {
@@ -90,10 +79,12 @@ static int roman_to_arabic(const char *roman) {
     char two_char_substring[3];
     strncpy(two_char_substring, &roman[i], 2);
     two_char_substring[2] = '\0';
+    to_uppercase(two_char_substring);
 
     char one_char_substring[2];
     strncpy(one_char_substring, &roman[i], 1);
     one_char_substring[1] = '\0';
+    to_uppercase(one_char_substring);
 
     bool numerals_array_includes_two_char_substring = false;
 
@@ -123,6 +114,18 @@ static int roman_to_arabic(const char *roman) {
   }
 
   return arabic;
+}
+
+static char *to_uppercase(char *string) {
+  assert(string != NULL);
+
+  size_t i = 0;
+
+  while ((string[i] = toupper(string[i])) != '\0') {
+    i += 1;
+  }
+
+  return string;
 }
 
 static char *arabic_to_roman(char *roman, int arabic) {
