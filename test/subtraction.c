@@ -62,6 +62,12 @@ START_TEST(C_minus_X_is_XC) {
   ck_assert_str_eq(expected, actual);
 } END_TEST
 
+START_TEST(XC_minus_XL_is_L) {
+  char expected[] = "L";
+  subtract(actual, "XC", "XL");
+  ck_assert_str_eq(expected, actual);
+} END_TEST
+
 TCase *subtraction(void) {
   TCase *subtraction = tcase_create("Subtraction");
 
@@ -76,6 +82,7 @@ TCase *subtraction(void) {
   tcase_add_test(subtraction, CC_minus_C_is_C);
 
   tcase_add_test(subtraction, C_minus_X_is_XC);
+  tcase_add_test(subtraction, XC_minus_XL_is_L);
 
   return subtraction;
 }
