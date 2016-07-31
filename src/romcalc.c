@@ -16,6 +16,10 @@ int add(char *sum, const char *augend, const char *addend) {
 
   int result = roman_to_arabic(augend) + roman_to_arabic(addend);
 
+  if (result > 3999) {
+    return ROMCALC_INVALID_RESULT_ERROR;
+  }
+
   arabic_to_roman(sum, result);
 
   return ROMCALC_SUCCESS;
