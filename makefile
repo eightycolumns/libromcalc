@@ -1,5 +1,11 @@
 MAKEFLAGS += -s
 
+export CC = gcc
+export CFLAGS = -std=c99 -pedantic -Wall -Wextra -Werror -I .. -O2 -D NDEBUG
+
+export LIB_NAME = libromcalc.a
+export TEST_EXE = romcalc-test
+
 DIRS = src test
 
 MAKE_DIRS = $(DIRS:%=make-%)
@@ -11,12 +17,9 @@ all: $(MAKE_DIRS)
 $(MAKE_DIRS):
 	$(MAKE) -C $(@:make-%=%)
 
-BUILD_DIR = build
-TEST_EXE = romcalc-test
-
 .PHONY: check
 check:
-	./$(BUILD_DIR)/$(TEST_EXE)
+	./build/$(TEST_EXE)
 
 CLEAN_DIRS = $(DIRS:%=clean-%)
 
