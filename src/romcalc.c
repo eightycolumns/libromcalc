@@ -16,7 +16,7 @@ int add(char *sum, const char *augend, const char *addend) {
 
   int result = roman_to_arabic(augend) + roman_to_arabic(addend);
 
-  if (result > 3999) {
+  if (!is_in_range(result)) {
     return ROMCALC_INVALID_RESULT_ERROR;
   }
 
@@ -36,7 +36,7 @@ int subtract(char *difference, const char *minuend, const char *subtrahend) {
 
   int result = roman_to_arabic(minuend) - roman_to_arabic(subtrahend);
 
-  if (result < 1) {
+  if (!is_in_range(result)) {
     return ROMCALC_INVALID_RESULT_ERROR;
   }
 

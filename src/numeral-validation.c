@@ -44,6 +44,10 @@ bool is_roman_numeral(const char *string) {
   return result;
 }
 
+bool is_in_range(int arabic_numeral) {
+  return arabic_numeral > 0 && arabic_numeral < 4000;
+}
+
 static bool is_empty_string(const char *string) {
   assert(string != NULL);
   return strcmp("", string) == 0;
