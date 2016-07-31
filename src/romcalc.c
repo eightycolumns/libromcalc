@@ -27,6 +27,7 @@ static size_t numeral_count = sizeof numerals / sizeof numerals[0];
 static int roman_to_arabic(const char *roman);
 static char *substring(char *dest, const char *src, size_t n);
 static char *to_uppercase(char *string);
+static bool numerals_array_includes(const char *key);
 static char *arabic_to_roman(char *roman, int arabic);
 
 int add(char *sum, const char *augend, const char *addend) {
@@ -79,15 +80,7 @@ static int roman_to_arabic(const char *roman) {
     substring(one_char_substring, &roman[i], 1);
     to_uppercase(one_char_substring);
 
-    bool numerals_array_includes_two_char_substring = false;
-
-    for (size_t j = 0; j < numeral_count; j += 1) {
-      if (strcmp(two_char_substring, numerals[j].key) == 0) {
-        numerals_array_includes_two_char_substring = true;
-      }
-    }
-
-    if (numerals_array_includes_two_char_substring) {
+    if (numerals_array_includes(two_char_substring)) {
       for (size_t k = 0; k < numeral_count; k += 1) {
         if (strcmp(two_char_substring, numerals[k].key) == 0) {
           arabic += numerals[k].value;
@@ -129,6 +122,18 @@ static char *to_uppercase(char *string) {
   }
 
   return string;
+}
+
+static bool numerals_array_includes(const char *key) {
+  assert(key != NULL);
+
+  for (size_t i = 0; i < numeral_count; i += 1) {
+    if (strcmp(key, numerals[i].key) == 0) {
+      return true;
+    }
+  }
+
+  return false;
 }
 
 static char *arabic_to_roman(char *roman, int arabic) {
