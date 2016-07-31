@@ -1,10 +1,16 @@
 #include "test/subtraction.h"
 
+#include <string.h>
+
 #include <check.h>
 
 #include "src/romcalc.h"
 
 static char actual[ROMCALC_MAX_LENGTH];
+
+static void setup(void) {
+  strcpy(actual, "");
+}
 
 START_TEST(MMMCMXCIX_minus_CXI_is_MMMDCCCLXXXVIII) {
   char expected[] = "MMMDCCCLXXXVIII";
@@ -122,6 +128,7 @@ START_TEST(mmmcccxxxiii_minus_mmccxxii_is_MCXI) {
 
 TCase *subtraction(void) {
   TCase *subtraction = tcase_create("Subtraction");
+  tcase_add_checked_fixture(subtraction, setup, NULL);
 
   tcase_add_test(subtraction, MMMCMXCIX_minus_CXI_is_MMMDCCCLXXXVIII);
   tcase_add_test(subtraction, MMMDCCCLXXXVIII_minus_MDCCCLXXXVIII_is_MM);

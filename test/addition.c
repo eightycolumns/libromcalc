@@ -1,10 +1,16 @@
 #include "test/addition.h"
 
+#include <string.h>
+
 #include <check.h>
 
 #include "src/romcalc.h"
 
 static char actual[ROMCALC_MAX_LENGTH];
+
+static void setup(void) {
+  strcpy(actual, "");
+}
 
 START_TEST(I_plus_I_is_II) {
   char expected[] = "II";
@@ -122,6 +128,7 @@ START_TEST(mcxi_plus_mmccxxii_is_MMMCCCXXXIII) {
 
 TCase *addition(void) {
   TCase *addition = tcase_create("Addition");
+  tcase_add_checked_fixture(addition, setup, NULL);
 
   tcase_add_test(addition, I_plus_I_is_II);
   tcase_add_test(addition, II_plus_II_is_IV);
