@@ -1,11 +1,18 @@
 #include "test/invalid-result-error.h"
 
+#include <string.h>
+
 #include <check.h>
 
 #include "src/romcalc.h"
 
 static char sum[ROMCALC_MAX_LENGTH];
 static char difference[ROMCALC_MAX_LENGTH];
+
+static void setup(void) {
+  strcpy(sum, "");
+  strcpy(difference, "");
+}
 
 START_TEST(MMMCMXCIX_plus_I_is_an_invalid_result) {
   int expected = ROMCALC_INVALID_RESULT_ERROR;
@@ -21,6 +28,7 @@ START_TEST(I_minus_I_is_an_invalid_result) {
 
 TCase *invalid_result_error(void) {
   TCase *invalid_result_error = tcase_create("Invalid Result Error");
+  tcase_add_checked_fixture(invalid_result_error, setup, NULL);
 
   tcase_add_test(invalid_result_error, MMMCMXCIX_plus_I_is_an_invalid_result);
   tcase_add_test(invalid_result_error, I_minus_I_is_an_invalid_result);

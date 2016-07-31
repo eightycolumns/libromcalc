@@ -1,10 +1,16 @@
 #include "test/invalid-operand-error.h"
 
+#include <string.h>
+
 #include <check.h>
 
 #include "src/romcalc.h"
 
 static char sum[ROMCALC_MAX_LENGTH];
+
+static void setup(void) {
+  strcpy(sum, "");
+}
 
 START_TEST(the_empty_string_is_an_invalid_operand) {
   int expected = ROMCALC_INVALID_OPERAND_ERROR;
@@ -98,6 +104,7 @@ START_TEST(MmCcXxIi_is_an_invalid_operand) {
 
 TCase *invalid_operand_error(void) {
   TCase *invalid_operand_error = tcase_create("Invalid Operand Error");
+  tcase_add_checked_fixture(invalid_operand_error, setup, NULL);
 
   tcase_add_test(invalid_operand_error, the_empty_string_is_an_invalid_operand);
 

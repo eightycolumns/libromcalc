@@ -1,11 +1,18 @@
 #include "test/success.h"
 
+#include <string.h>
+
 #include <check.h>
 
 #include "src/romcalc.h"
 
 static char sum[ROMCALC_MAX_LENGTH];
 static char difference[ROMCALC_MAX_LENGTH];
+
+static void setup(void) {
+  strcpy(sum, "");
+  strcpy(difference, "");
+}
 
 START_TEST(I_is_a_valid_operand) {
   int expected = ROMCALC_SUCCESS;
@@ -135,6 +142,7 @@ START_TEST(mmmcmxcix_is_a_valid_operand) {
 
 TCase *success(void) {
   TCase *success = tcase_create("Success");
+  tcase_add_checked_fixture(success, setup, NULL);
 
   tcase_add_test(success, I_is_a_valid_operand);
   tcase_add_test(success, III_is_a_valid_operand);
