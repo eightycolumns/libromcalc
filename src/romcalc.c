@@ -25,6 +25,7 @@ static Numeral numerals[] = {
 static size_t numeral_count = sizeof numerals / sizeof numerals[0];
 
 static int roman_to_arabic(const char *roman);
+static char *substring(char *dest, const char *src, size_t n);
 static char *to_uppercase(char *string);
 static char *arabic_to_roman(char *roman, int arabic);
 
@@ -71,13 +72,11 @@ static int roman_to_arabic(const char *roman) {
 
   while (i < roman_length) {
     char two_char_substring[3];
-    strncpy(two_char_substring, &roman[i], 2);
-    two_char_substring[2] = '\0';
+    substring(two_char_substring, &roman[i], 2);
     to_uppercase(two_char_substring);
 
     char one_char_substring[2];
-    strncpy(one_char_substring, &roman[i], 1);
-    one_char_substring[1] = '\0';
+    substring(one_char_substring, &roman[i], 1);
     to_uppercase(one_char_substring);
 
     bool numerals_array_includes_two_char_substring = false;
@@ -108,6 +107,16 @@ static int roman_to_arabic(const char *roman) {
   }
 
   return arabic;
+}
+
+static char *substring(char *dest, const char *src, size_t n) {
+  assert(dest != NULL);
+  assert(src != NULL);
+
+  strncpy(dest, src, n);
+  dest[n] = '\0';
+
+  return dest;
 }
 
 static char *to_uppercase(char *string) {
