@@ -1,7 +1,7 @@
 MAKEFLAGS += -s
 
 CC = gcc
-CFLAGS = -std=c99 -pedantic -Wall -Wextra -Werror -I .. -O2
+CFLAGS = -std=c99 -pedantic -Wall -Wextra -Werror -I .. -O2 -D NDEBUG
 
 BUILD_DIR = ../build
 LIB_NAME = libromcalc.a
