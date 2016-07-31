@@ -29,6 +29,7 @@ static char *substring(char *dest, const char *src, size_t n);
 static char *to_uppercase(char *string);
 static bool numerals_array_includes(const char *key);
 static int value_of(const char *key);
+static Numeral *find_numeral_by(const char *key);
 static char *arabic_to_roman(char *roman, int arabic);
 
 int add(char *sum, const char *augend, const char *addend) {
@@ -117,29 +118,26 @@ static char *to_uppercase(char *string) {
 
 static bool numerals_array_includes(const char *key) {
   assert(key != NULL);
-
-  for (size_t i = 0; i < numeral_count; i += 1) {
-    if (strcmp(key, numerals[i].key) == 0) {
-      return true;
-    }
-  }
-
-  return false;
+  return find_numeral_by(key) != NULL;
 }
 
 static int value_of(const char *key) {
   assert(key != NULL);
   assert(numerals_array_includes(key));
 
-  int value = 0;
+  return find_numeral_by(key)->value;
+}
+
+static Numeral *find_numeral_by(const char *key) {
+  assert(key != NULL);
 
   for (size_t i = 0; i < numeral_count; i += 1) {
     if (strcmp(key, numerals[i].key) == 0) {
-      value = numerals[i].value;
+      return &numerals[i];
     }
   }
 
-  return value;
+  return NULL;
 }
 
 static char *arabic_to_roman(char *roman, int arabic) {
