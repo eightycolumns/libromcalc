@@ -14,10 +14,17 @@ START_TEST(MMMCMXCIX_minus_CXI_is_MMMDCCCLXXXVIII) {
   ck_assert_str_eq(expected, actual);
 } END_TEST
 
+START_TEST(MMMDCCCLXXXVIII_minus_MDCCCLXXXVIII_is_MM) {
+  char expected[] = "MM";
+  subtract(actual, "MMMDCCCLXXXVIII", "MDCCCLXXXVIII");
+  ck_assert_str_eq(expected, actual);
+} END_TEST
+
 TCase *subtraction(void) {
   TCase *subtraction = tcase_create("Subtraction");
 
   tcase_add_test(subtraction, MMMCMXCIX_minus_CXI_is_MMMDCCCLXXXVIII);
+  tcase_add_test(subtraction, MMMDCCCLXXXVIII_minus_MDCCCLXXXVIII_is_MM);
 
   return subtraction;
 }
