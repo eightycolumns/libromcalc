@@ -104,6 +104,12 @@ START_TEST(M_plus_M_is_MM) {
   ck_assert_str_eq(expected, actual);
 } END_TEST
 
+START_TEST(MM_plus_MDCCCLXXXVIII_is_MMMDCCCLXXXVIII) {
+  char expected[] = "MMMDCCCLXXXVIII";
+  add(actual, "MM", "MDCCCLXXXVIII");
+  ck_assert_str_eq(expected, actual);
+} END_TEST
+
 TCase *addition(void) {
   TCase *addition = tcase_create("Addition");
 
@@ -126,6 +132,7 @@ TCase *addition(void) {
   tcase_add_test(addition, CM_plus_C_is_M);
 
   tcase_add_test(addition, M_plus_M_is_MM);
+  tcase_add_test(addition, MM_plus_MDCCCLXXXVIII_is_MMMDCCCLXXXVIII);
 
   return addition;
 }
