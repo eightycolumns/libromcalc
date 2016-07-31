@@ -1,7 +1,5 @@
 #include "test/subtraction.h"
 
-#include <stdlib.h>
-
 #include <check.h>
 
 #include "src/romcalc.h"

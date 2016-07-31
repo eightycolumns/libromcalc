@@ -1,6 +1,6 @@
 #include "test/null-pointer-error.h"
 
-#include <stdlib.h>
+#include <stddef.h>
 
 #include <check.h>
 

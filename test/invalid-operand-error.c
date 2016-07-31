@@ -1,7 +1,5 @@
 #include "test/invalid-operand-error.h"
 
-#include <stdlib.h>
-
 #include <check.h>
 
 #include "src/romcalc.h"
